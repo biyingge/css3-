@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.jq22.com/demo/css3-loader-spinners202102060013/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CSS3 Loader &amp; Spinners</title>
+
+<style>
+	
+body {
+  margin: 0;
+  padding-top: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+div{
+  text-align: center;
+  display: block;
+  width: 100%
+}
+
+.loader-39 {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background: red;
+  margin: 0 5px;
+  -webkit-animation: bump 0.6s linear infinite alternate;
+  animation: bump 0.6s linear infinite alternate;
+  position: relative;
+}
+.loader-40 {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 5px;
+  position: relative;
+  background: green;
+          position: relative;
+  -webkit-animation: bump2 0.6s linear infinite alternate;
+          animation: bump2 0.6s linear infinite alternate;
+}
+
+/* keyFrames */
+@-webkit-keyframes bump {
+  0% {
+    /*z-index: 1;*/
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(26px, 0);
+    /*z-index: 2;*/
+
+  }
+}
+@keyframes bump {
+ 0% {
+    /*z-index: 1;*/
+    transform: translate(0, 0);
+  }
+  100% {
+    /*z-index: 2;*/
+    transform: translate(26px, 0);
+  }
+}
+@-webkit-keyframes bump2 {
+  0% {
+    /*z-index: 2;*/
+    transform: translate(0 0);
+  }
+  100% {
+    /*z-index: 1;*/
+    transform: translate(-26px, 0);
+  }
+}
+@keyframes bump2 {
+ 0% {
+    transform: translate(0 0);
+    /*z-index: 2;*/
+  }
+  100% {
+    /*z-index: 1;*/
+    transform: translate(-26px, 0);
+  }
+}
+
+</style>
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- partial -->
+  
+
+<div><span class="loader-39"> </span><span class="loader-40"> </span></div>
+
+</body></html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://www.swiper.com.cn/demo/030-pagination.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Swiper demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="swiper-bundle.min.css">
+
+    <!-- Demo styles -->
+    <style>
+      html,
+      body {
+        position: relative;
+        height: 100%;
+      }
+
+      body {
+        background: #eee;
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 100%;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    </style>
+  <style type="text/css">
+    
+    .banpagination li{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+    .banpagination li:after{
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: #333;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -3px;
+      margin-left: -3px;
+      border-radius: 50%;
+    }
+    .anicirclebox {
+      width: 14px; 
+      height: 14px;
+      position: absolute; 
+      left: 50%;
+      top: 50%;
+      margin-top: -7px;
+      margin-left: -7px;
+      clip: rect(0px, 14px, 14px, 7px); 
+    }
+    .anicirclebox span {
+      width: 10px;
+      height:10px;
+      border: 2px solid green;
+      border-radius: 50%;
+      position: absolute;
+      clip: rect(0px, 7px, 14px, 0px);
+      left: 0;
+    }
+   .anicirclebox,.anicirclebox span {
+      -webkit-animation-iteration-count: 1;  
+      -webkit-animation-fill-mode: forwards; 
+      -webkit-animation-timing-function:linear; 
+    }
+
+    .banact{
+      -webkit-animation-duration: 0.01s; 
+      -webkit-animation-delay: 1.5s; 
+      -webkit-animation-name: close-wrapper; 
+    }
+
+    .banact .circleleft{
+      -webkit-animation-duration: 3s; 
+      -webkit-animation-name: left-spin;
+    }
+
+    .banact .circleright{
+      -webkit-animation-duration: 1.5s; 
+      -webkit-animation-name: right-spin;
+    }
+
+    @-webkit-keyframes right-spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(180deg);
+      }
+    }
+    @-webkit-keyframes left-spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes close-wrapper {
+      to {
+        clip: rect(auto, auto, auto, auto);
+      }
+    }
+  </style>
+  </head>
+
+  <body>
+    <!-- Swiper -->
+    <div class="swiper banner mySwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+      <div class="swiper-wrapper" id="swiper-wrapper-ef0b7eabbc4956d3" aria-live="polite">
+        <div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 9" style="width: 1920px;">Slide 1</div>
+        <div class="swiper-slide swiper-slide-next" role="group" aria-label="2 / 9" style="width: 1920px;">Slide 2</div>
+        <div class="swiper-slide" role="group" aria-label="3 / 9" style="width: 1920px;">Slide 3</div>
+        <div class="swiper-slide" role="group" aria-label="4 / 9" style="width: 1920px;">Slide 4</div>
+        <div class="swiper-slide" role="group" aria-label="5 / 9" style="width: 1920px;">Slide 5</div>
+      </div>
+      <ul class="swiper-pagination banpagination">
+        
+      </ul>
+
+    <!-- Swiper JS -->
+    <script src="swiper-bundle.min.js"></script>
+
+    <!-- Initialize Swiper -->
+    <script>
+      var bannerswiper = new Swiper(".mySwiper", {
+        pagination: {
+          el: ".swiper-pagination",
+          type : 'custom',
+          renderCustom: function (swiper, current, total) {
+            var hbox="";
+            for(var t=1;t<=total;t++){
+              if(t==current){
+
+                hbox+='<li><p class="anicirclebox  banact"><span class="circleleft"></span><span class="circleright"></span></p></li>'
+              }else{
+                hbox+='<li><p class="anicirclebox "><span class="circleleft"></span><span class="circleright"></span></p></li>'
+              }
+            }
+            return hbox;
+          }
+        },
+        autoplay:true,
+        loop:true
+      });
+      $('.banner .swiper-slide').mouseenter(function () {
+         bannerswiper.autoplay.stop();
+      })
+      $('.banner .swiper-slide').mouseleave(function () {
+         bannerswiper.autoplay.start();
+      })
+
+    </script>
+  
+
+</body></html>

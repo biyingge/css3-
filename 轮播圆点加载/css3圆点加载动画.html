@@ -1,0 +1,117 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>纯CSS实现圆环动画</title>
+  <style type="text/css">
+    *{
+      margin:0;
+      padding:0;
+    }
+    .banpagination li{
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: relative;
+    }
+    .banpagination li:after{
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      background: #333;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-top: -3px;
+      margin-left: -3px;
+      border-radius: 50%;
+    }
+    .anicirclebox {
+      width: 14px; 
+      height: 14px;
+      position: absolute; 
+      left: 50%;
+      top: 50%;
+      margin-top: -7px;
+      margin-left: -7px;
+      clip: rect(0px, 14px, 14px, 7px); 
+    }
+    .anicirclebox span {
+      width: 10px;
+      height:10px;
+      border: 2px solid green;
+      border-radius: 50%;
+      position: absolute;
+      clip: rect(0px, 7px, 14px, 0px);
+    }
+   .anicirclebox,.anicirclebox span {
+      -webkit-animation-iteration-count: 1;  
+      -webkit-animation-fill-mode: forwards; 
+      -webkit-animation-timing-function:linear; 
+    }
+
+    .banact{
+      -webkit-animation-duration: 0.01s; 
+      -webkit-animation-delay: 1.5s; 
+      -webkit-animation-name: close-wrapper; 
+    }
+
+    .banact .circleleft{
+      -webkit-animation-duration: 3s; 
+      -webkit-animation-name: left-spin;
+    }
+
+    .banact .circleright{
+      -webkit-animation-duration: 1.5s; 
+      -webkit-animation-name: right-spin;
+    }
+
+    @-webkit-keyframes right-spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(180deg);
+      }
+    }
+    @-webkit-keyframes left-spin {
+      from {
+        -webkit-transform: rotate(0deg);
+      }
+      to {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+    @-webkit-keyframes close-wrapper {
+      to {
+        clip: rect(auto, auto, auto, auto);
+      }
+    }
+  </style>
+</head>
+<body>
+  <ul class="banpagination">
+    <li>
+      <p class="anicirclebox  banact">
+        <span class="circleleft"></span>
+        <span class="circleright"></span>
+      </p>
+    </li>
+    <li>
+       <p class="anicirclebox anicircle ">
+        <span class=" anicircle circleleft"></span>
+        <span class=" anicircle circleright"></span>
+      </p>
+    </li>
+    <li>
+       <p class="anicirclebox anicircle ">
+        <span class=" anicircle circleleft"></span>
+        <span class=" anicircle circleright"></span>
+      </p>
+    </li>
+  </ul>
+  
+</body>
+</html>

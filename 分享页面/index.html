@@ -1,0 +1,96 @@
+<html>
+ <head>
+  <title>Share function</title>
+  <meta charset="utf-8"/>
+ </head>
+ <body>
+ <div class="cksm clearfix">
+		<div class="cksmleft">
+			<h1>111</h1>
+            <div class="detailcon">
+                <p>222</p>
+                <p>333</p>
+            </div>
+		</div>
+		<div class="cksmright xwxqcksmright">
+			 <a title="分享到新浪微博" class="shareSina">微博</a>
+                <a title="分享到微信" class="shareWX">微信</a>
+			    <a title="分享到QQ"  class="shareqq">qq</a>
+			     <!-- 微信弹出二维码 -->
+			<div class="wx-box" style="display: none;">
+			    <div class="wx-box-head">
+			        <span>分享到微信</span>
+			        <a href="#" onclick="return false;" class="wx-box-close">×</a>
+			    </div>
+			    <div id="wxCode" class="wx-box-main"><canvas width="200" height="200"></canvas></div>
+			    <div class="wx-box-foot">
+			        用微信扫码二维码
+                    
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.qrcode.min.js"></script>
+	<script>
+    var ShareTip = function(){}
+    var shareUrl = window.location.href;
+    //分享到新浪微博
+    ShareTip.prototype.sharetosina=function(title,url)
+    {
+        var sharesinastring='http://v.t.sina.com.cn/share/share.php?title='+title+'&url='+url+'&content=utf-8&sourceUrl='+url;
+           // var sharesinastring='http://v.t.sina.com.cn/share/share.php?&appkey='+appkey+'&title='+title+'&url='+url+'&content=utf-8&sourceUrl='+url+'&pic='picurl;
+        window.open(sharesinastring,'newwindow','height=400,width=400,top=100,left=100');
+    }
+
+    $('.shareSina').on('click', function () {
+        var shareTitle = $('h1').text();
+        var shareContent = $('.detailcon p').eq(1).text();
+        
+        var share1 = new ShareTip();
+        share1.sharetosina(shareTitle + "  " + shareContent,shareUrl);
+    })
+
+    //分享到微信
+    $('.shareWX').on('click', function () {
+        $('.wx-box').css('display', 'block');
+        //生成二维码
+        $("#wxCode").empty().qrcode({
+            render: 'canvas', 
+            text: shareUrl //任意内容
+        });
+    })
+    $('.wx-box-close').on('click', function () {
+        $('.wx-box').css('display', 'none');
+    })
+     /**
+     * 分享QQ好友
+     * @param  {[type]} title [分享标题]
+     * @param  {[type]} url   [分享url链接，默认当前页面链接]
+     * @param  {[type]} pic   [分享图片]
+     * @return {[type]}       [description]
+     */
+    $('.shareqq').on('click', function (url, title, pic) {
+        var param = {
+            url: url || window.location.href,
+            desc: '', /*分享理由*/
+            title : title || '', /*分享标题(可选)*/
+            summary : '',/*分享描述(可选)*/
+            pics : pic || '',/*分享图片(可选)*/
+            flash : '', /*视频地址(可选)*/
+            site: '' /*分享来源 (可选) */
+        };
+        var s = [];
+        for (var i in param) {
+            s.push(i + '=' + encodeURIComponent(param[i] || ''));
+        }
+        var targetUrl = "http://connect.qq.com/widget/shareqq/iframe_index.html?" + s.join('&') ;
+        window.open(targetUrl, 'qq', 'height=520, width=720');
+    })
+      
+        
+       
+</script>
+ </body>
+</html>
